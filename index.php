@@ -23,7 +23,7 @@
 <?php
 	require("OpenLDBWS.php");
 	$OpenLDBWS = new OpenLDBWS("43f1277a-bbae-41d6-8211-38146bbd7e17");
-	$response = $OpenLDBWS->GetDepartureBoard(5,"RAY","WAT");
+	$response = $OpenLDBWS->GetDepBoardWithDetails(5,"RAY","WAT");
 	
 	$array = (array)$response;
 	$result = (array)$array['GetStationBoardResult'];
@@ -37,25 +37,47 @@
 	
 	echo ("<div id='main'>");
 	echo ("<div class='trains'>");
-	echo "From " . $fromStation . " to " . $toStation . "<br>";
+	
+	echo ("
+		<div class='trains-title'>
+		From " . $fromStation . " to " . $toStation . "<br>
+		</div>
+	");
 	
 	
 	foreach ($service_res as $value)
 	{
+		//echo('<table style="width:100%; background:#0ECEAB; font:#FFFFFF;">');
 		echo('<table style="width:100%">');
-		echo("<tr>");
 		$value_arr = (array)$value;
 		$origin = $value_arr['origin'];
 		$origin_arr = (array)$origin;
+		$location = $origin_arr['location'];
+		$location_arr = (array)$location;
+		
+		// vars
+		$lenght = 4;
+		
+		// clean
+		if(!array_key_exists("lenght",$value_arr))
+		{
+			$lenght = $value_arr['length'];
+		}
+		
 		//var_dump($origin_arr);
 		// 
-		echo ("<td>Platform: " . $value_arr['platform'] . "</td>");
-		echo ("<td>Standard departure: " . $value_arr['std'] . "</td>");
-		echo ("<td>Expected departure: " . $value_arr['etd'] . "</td>");
-		echo("</tr>");
-		echo("<tr>");
-		echo ("<td>" . $value_arr['length'] . " coaches </td>");
-		echo("</tr>");
+		echo ("
+			<tr>
+				<td>Platform: " . $value_arr['platform'] . "</td>
+				<td>" . $lenght . " coaches </td>
+				<td>Standard departure: " . $value_arr['std'] . "</td>
+				<td>Expected departure: " . $value_arr['etd'] . "</td>
+			</tr>
+			<tr>
+				
+				
+			</tr>
+		");
 		echo("</table>");
 	}
 	echo ("</div>");

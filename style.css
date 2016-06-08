@@ -1,20 +1,47 @@
 #main{
     width:100%;
-    margin:5% auto auto 2%;
+	margin-top: 5%;
+	margin-right: 2%;
+	margin-bottom: auto;
+	margin-left: 2%;
 }
 .trains{
+	border-radius: 25px;
+	padding: 1%;
     float:left;
-    width:68%;
+    width:66%;
     height:auto;
-    background:orange;
-    border:2px solid red;
+    background: #50597b;
+	color: #FFFFFF;
+    /*border:2px solid red;*/
     margin:0 auto;
+}
+.trains-title{
+	border-radius: 15px;
+	padding: 1%;
+    float:center;
+    width:98%;
+    height:auto;
+    background: #11a8ab;
+	color: #FFFFFF;
+    /*border:2px solid red;*/
+    margin:0 auto;
+}
+.train{
+	background: #11a8ab;
+	color: #FFFFFF;
+	width: 100%;
 }
 .currentTime{
     float:left;
-    width:28%;
+	padding-left: 4%;
+    width:26%;
     height:auto;
     background:yellow;
     border:2px solid red;
     margin:0 auto;
+}
+body{
+	background-color: #1f253d;
+	color: #FFFFFF;
 }
