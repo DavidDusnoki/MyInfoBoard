@@ -54,34 +54,61 @@
 		$origin_arr = (array)$origin;
 		$location = $origin_arr['location'];
 		$location_arr = (array)$location;
-		
+		$subsequentCallingPoints = $value_arr['subsequentCallingPoints'];
+		$subsequentCallingPoints_arr = (array)$subsequentCallingPoints;
+		$callingPointList = $subsequentCallingPoints_arr['callingPointList'];
+		$callingPointList_arr = (array)$callingPointList;
+		$callingPoint = $callingPointList_arr['callingPoint'];
+		$callingPoint_arr = (array)$callingPoint;
+		$firstPoint = $callingPoint_arr[0];
+		$firstPoint_arr = (array)$firstPoint;
+		$lastPoint = end($callingPoint_arr);
+		$lastPoint_arr = (array)$lastPoint;
+		//var_dump($callingPoint_arr);
 		// vars
-		$lenght = 4;
+		$length = 4;
 		
 		// clean
-		if(!array_key_exists("lenght",$value_arr))
+		$keys = array_keys($value_arr);
+		if(in_array("length", $keys))
 		{
-			$lenght = $value_arr['length'];
+			$length = $value_arr['length'];
 		}
+		/*if(!isset($value_arr['length']) && !is_array($value_arr['length']))
+		{
+			$length = $value_arr['length'];
+		}*/
 		
 		//var_dump($origin_arr);
 		// 
 		echo ("
 			<tr>
-				<td>Platform: " . $value_arr['platform'] . "</td>
-				<td>" . $lenght . " coaches </td>
-				<td>Standard departure: " . $value_arr['std'] . "</td>
-				<td>Expected departure: " . $value_arr['etd'] . "</td>
-			</tr>
-			<tr>
-				
-				
+				<td>
+					Platform: " . $value_arr['platform'] . "
+					<br>
+					From: " . $location_arr['locationName'] . "
+				</td>
+				<td>
+					" . $length . " coaches
+					<br>
+					Next station: " . $firstPoint_arr['locationName'] . "
+				</td>
+				<td>
+					Standard departure: " . $value_arr['std'] . "
+					<br>
+					Standard arrival: " . $lastPoint_arr['st'] . "
+				</td>
+				<td>
+					Expected departure: " . $value_arr['etd'] . "
+					<br>
+					Expected arrival: " . $lastPoint_arr['et'] . "
+				</td>
 			</tr>
 		");
 		echo("</table>");
 	}
 	echo ("</div>");
-	echo ("<div class='currentTime'></div>");
+	echo ("<div class='time'><div class='currentTime'></div></div>");
 	echo ("</div>");
 	
 	// $origin = $service[0];
